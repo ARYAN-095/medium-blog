@@ -176,9 +176,9 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int     @id @default(autoincrement())\n  name     String?\n  username String  @unique\n  password String\n  blogs    Blog[]\n}\n\nmodel Blog {\n  id        Int     @id @default(autoincrement())\n  authorId  Int\n  content   String\n  title     String\n  publisher Boolean @default(false)\n  author    User    @relation(fields: [authorId], references: [id])\n}\n",
-  "inlineSchemaHash": "bd8b38e367a68282144d67cb35bf504a4230dc52c02ed77f4dd9b3efa1737904",
-  "copyEngine": false
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n\n  output = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int     @id @default(autoincrement())\n  name     String?\n  username String  @unique\n  password String\n  blogs    Blog[]\n}\n\nmodel Blog {\n  id        Int     @id @default(autoincrement())\n  authorId  Int\n  content   String\n  title     String\n  publisher Boolean @default(false)\n  author    User    @relation(fields: [authorId], references: [id])\n}\n",
+  "inlineSchemaHash": "803aa4457455f2a8e367b58e9154eede86873d6485cab22bc24071dd7cd7cc2b",
+  "copyEngine": true
 }
 
 const fs = require('fs')
@@ -215,3 +215,9 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
+path.join(process.cwd(), "src/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node")
+// file annotations for bundling tools to include these files
+path.join(__dirname, "schema.prisma");
+path.join(process.cwd(), "src/generated/prisma/schema.prisma")
