@@ -7,3 +7,9 @@ app.get('/', (c) => {
 })
 
 export default app
+
+
+
+
+
+DATABASE_URL=""
