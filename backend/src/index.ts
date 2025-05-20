@@ -11,5 +11,4 @@ export default app
 
 
 
-
-DATABASE_URL=""
+ 
